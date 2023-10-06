@@ -51,21 +51,8 @@ async function initializeCode() {
         const nimi = feature.properties.nimi; 
         layer.bindTooltip(nimi).openTooltip();
         
-        const positiveMigration = parseFloat(migrationPos.dataset.value[currentIndex]);
-        const negativeMigration = parseFloat(migrationNeg.dataset.value[currentIndex]);
-
-        const hue = Math.min((Math.pow(positiveMigration / negativeMigration, 3) * 60), 120);
-
-        const style = {
-            fillColor: `hsl(${hue}, 75%, 50%)`,
-            weight: 2,
-            opacity: 1,
-            color: 'white',
-            dashArray: '3',
-            fillOpacity: 0.7
-        };
-    
-        layer.setStyle(style);
+        const positiveMigration = migrationPos.dataset.value[currentIndex];
+        const negativeMigration = migrationNeg.dataset.value[currentIndex];
 
         layer.bindPopup(
             `<ul>
@@ -79,9 +66,8 @@ async function initializeCode() {
         if (currentIndex >= migrationPos.dataset.value.length) {
             currentIndex = 0;
         }
-
-        
     };
+
 
     fetchData();
 }
