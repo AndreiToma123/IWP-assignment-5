@@ -43,7 +43,7 @@ async function initializeCode() {
     };
 
     
-    let currentIndex = 0;
+    let i = 0;
     const getFeature = (feature, layer, migrationPos, migrationNeg) => {
         if (!feature.properties.nimi) {
             return;
@@ -51,8 +51,8 @@ async function initializeCode() {
         const nimi = feature.properties.nimi; 
         layer.bindTooltip(nimi).openTooltip();
         
-        const positiveMigration = migrationPos.dataset.value[currentIndex];
-        const negativeMigration = migrationNeg.dataset.value[currentIndex];
+        const positiveMigration = migrationPos.dataset.value[i];
+        const negativeMigration = migrationNeg.dataset.value[i];
 
         layer.bindPopup(
             `<ul>
@@ -62,9 +62,9 @@ async function initializeCode() {
             </ul>`
         );
 
-        currentIndex++;
-        if (currentIndex >= migrationPos.dataset.value.length) {
-            currentIndex = 0;
+        i++;
+        if (i >= migrationPos.dataset.value.length) {
+            i = 0;
         }
     };
 
